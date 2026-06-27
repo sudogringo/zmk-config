@@ -1,0 +1,3 @@
+mainmenu "ZMK Config"
+
+source "Kconfig.zephyr"
