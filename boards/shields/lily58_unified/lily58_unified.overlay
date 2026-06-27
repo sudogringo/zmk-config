@@ -12,11 +12,6 @@
         zmk,physical-layout = &physical_layout0;
     };
 
-&physical_layout0 {
-        kscan = <&kscan0>;
-        transform = <&default_transform>;
-    };
-
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <6>;
@@ -63,4 +58,9 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,0) RC(9,0) RC(8,5) RC(8,4) 
             /* R9 right bottom */ , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
     };
+};
+
+&physical_layout0 {
+    kscan = <&kscan0>;
+    transform = <&default_transform>;
 };
