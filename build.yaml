@@ -19,5 +19,5 @@
 #
 ---
 include:
-  - board: sparkfun_pro_micro_nrf52840
+  - board: nrfmicro_13
     shield: lily58_unified
