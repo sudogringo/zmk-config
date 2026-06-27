@@ -1,3 +1,1 @@
-mainmenu "ZMK Config"
-
-source "Kconfig.zephyr"
+# Empty — ZMK handles Kconfig sourcing
