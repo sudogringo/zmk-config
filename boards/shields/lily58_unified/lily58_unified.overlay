@@ -23,23 +23,10 @@
         columns = <6>;
         rows = <10>;
         /*
-         * Layout: Lily58 unified
-         * Rows 0-4  = left half
-         * Rows 5-9  = right half
-         *
-         * | C0     | C1     | C2     | C3     | C4     | C5     |
-         * Left half:
-         * | R0C0   | R0C1   | R0C2   | R0C3   | R0C4   | R0C5   |
-         * | R1C0   | R1C1   | R1C2   | R1C3   | R1C4   | R1C5   |
-         * | R2C0   | R2C1   | R2C2   | R2C3   | R2C4   | R2C5   |
-         * | R3C0   | R3C1   | R3C2   | R3C3   | R3C4   | R3C5   |
-         * |        | R4C1   | R4C2   | R4C3   | R4C4   |        |  <- thumb row
-         * Right half:
-         * | R5C0   | R5C1   | R5C2   | R5C3   | R5C4   | R5C5   |
-         * | R6C0   | R6C1   | R6C2   | R6C3   | R6C4   | R6C5   |
-         * | R7C0   | R7C1   | R7C2   | R7C3   | R7C4   | R7C5   |
-         * | R8C0   | R8C1   | R8C2   | R8C3   | R8C4   | R8C5   |
-         * |        | R9C1   | R9C2   | R9C3   | R9C4   |        |  <- thumb row
+         * Rows 0-4  = left half  (top to bottom)
+         * Rows 5-9  = right half (top to bottom)
+         * C0 = outermost column (shared left+right)
+         * C5 = innermost column (shared left+right)
          */
         map = <
 RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)   RC(5,5) RC(5,4) RC(5,3) RC(5,2) RC(5,1) RC(5,0)
@@ -56,25 +43,25 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,0) RC(9,0) RC(8,5) RC(8,4) 
         diode-direction = "col2row";
 
         col-gpios
-            = <&pro_micro 18 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 19 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 20 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 21 GPIO_ACTIVE_HIGH>
-            , <&pro_micro 2  GPIO_ACTIVE_HIGH>
-            , <&pro_micro 3  GPIO_ACTIVE_HIGH>
+            /* C0 outermost */ = <&gpio1 15 GPIO_ACTIVE_HIGH>
+            /* C1           */ , <&gpio0 2  GPIO_ACTIVE_HIGH>
+            /* C2           */ , <&gpio0 29 GPIO_ACTIVE_HIGH>
+            /* C3           */ , <&gpio0 31 GPIO_ACTIVE_HIGH>
+            /* C4           */ , <&gpio0 20 GPIO_ACTIVE_HIGH>
+            /* C5 innermost */ , <&gpio0 17 GPIO_ACTIVE_HIGH>
             ;
 
         row-gpios
-            = <&pro_micro 4  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 5  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 9  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R0 left  top    */ = <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R1 left         */ , <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R2 left         */ , <&gpio1 0  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R3 left         */ , <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R4 left  bottom */ , <&gpio1 4  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R5 right top    */ , <&gpio1 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R6 right        */ , <&gpio0 9  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R7 right        */ , <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R8 right        */ , <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            /* R9 right bottom */ , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
     };
 };
