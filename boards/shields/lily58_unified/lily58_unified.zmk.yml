@@ -1,0 +1,9 @@
+file_format: "1"
+id: lily58_unified
+name: Lily58 Unified
+type: shield
+url: https://github.com/tiagoboberg/zmk-config
+requires:
+  - pro_micro
+features:
+  - keys

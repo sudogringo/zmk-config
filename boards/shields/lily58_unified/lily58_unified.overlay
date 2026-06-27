@@ -1,0 +1,73 @@
+/*
+ * Copyright (c) 2024 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,matrix-transform = &default_transform;
+    };
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <6>;
+        rows = <10>;
+        /*
+         * Layout: Lily58 unified
+         * Rows 0-4  = left half
+         * Rows 5-9  = right half
+         *
+         * | C0     | C1     | C2     | C3     | C4     | C5     |
+         * Left half:
+         * | R0C0   | R0C1   | R0C2   | R0C3   | R0C4   | R0C5   |
+         * | R1C0   | R1C1   | R1C2   | R1C3   | R1C4   | R1C5   |
+         * | R2C0   | R2C1   | R2C2   | R2C3   | R2C4   | R2C5   |
+         * | R3C0   | R3C1   | R3C2   | R3C3   | R3C4   | R3C5   |
+         * |        | R4C1   | R4C2   | R4C3   | R4C4   |        |  <- thumb row
+         * Right half:
+         * | R5C0   | R5C1   | R5C2   | R5C3   | R5C4   | R5C5   |
+         * | R6C0   | R6C1   | R6C2   | R6C3   | R6C4   | R6C5   |
+         * | R7C0   | R7C1   | R7C2   | R7C3   | R7C4   | R7C5   |
+         * | R8C0   | R8C1   | R8C2   | R8C3   | R8C4   | R8C5   |
+         * |        | R9C1   | R9C2   | R9C3   | R9C4   |        |  <- thumb row
+         */
+        map = <
+RC(0,0) RC(0,1) RC(0,2) RC(0,3) RC(0,4) RC(0,5)   RC(5,0) RC(5,1) RC(5,2) RC(5,3) RC(5,4) RC(5,5)
+RC(1,0) RC(1,1) RC(1,2) RC(1,3) RC(1,4) RC(1,5)   RC(6,0) RC(6,1) RC(6,2) RC(6,3) RC(6,4) RC(6,5)
+RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)   RC(7,0) RC(7,1) RC(7,2) RC(7,3) RC(7,4) RC(7,5)
+RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,0) RC(9,0) RC(8,0) RC(8,1) RC(8,2) RC(8,3) RC(8,4) RC(8,5)
+                        RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(9,1) RC(9,2) RC(9,3) RC(9,4)
+        >;
+    };
+
+    kscan0: kscan_0 {
+        compatible = "zmk,kscan-gpio-matrix";
+        wakeup-source;
+        diode-direction = "col2row";
+
+        col-gpios
+            = <&pro_micro 18 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 19 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 20 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 21 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 2  GPIO_ACTIVE_HIGH>
+            , <&pro_micro 3  GPIO_ACTIVE_HIGH>
+            ;
+
+        row-gpios
+            = <&pro_micro 4  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 5  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 9  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+    };
+};
