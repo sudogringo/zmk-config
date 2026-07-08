@@ -7,6 +7,24 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        SoftOff {
+            bindings = <&soft_off>;
+            key-positions = <0 49 57>;
+        };
+    };
+
+    behaviors {
+        new_behavior: new_behavior {
+            compatible = "zmk,behavior-soft-off";
+            label = "NEW_BEHAVIOR";
+            #binding-cells = <0>;
+            hold-time-ms = <5000>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -68,10 +86,10 @@
             //                            └────────┴────────┴────────┴────────┘  └────────┴────────┴────────┴────────┘
 
             bindings = <
-&trans     &trans  &trans  &trans   &trans   &trans   &trans       &trans     &trans     &trans    &trans     &trans
-&kp GRAVE  &kp N1  &kp N2  &kp N3   &kp N4   &kp N5   &kp N6       &kp N7     &kp N8     &kp N9    &kp N0     &trans
-&kp F1     &kp F2  &kp F3  &kp F4   &kp F5   &kp F6   &trans       &kp LEFT   &kp DOWN   &kp UP    &kp RIGHT  &trans
-&kp F7     &kp F8  &kp F9  &kp F10  &kp F11  &kp F12  &kp KP_PLUS  &kp MINUS  &kp EQUAL  &kp LBKT  &kp RBKT   &kp BSLH
+&trans     &trans  &trans  &trans   &trans   &trans   &trans       &trans     &trans     &trans     &trans    &trans
+&kp GRAVE  &kp N1  &kp N2  &kp N3   &kp N4   &kp N5   &kp N6       &kp N7     &kp N8     &kp N9     &kp N0    &trans
+&kp F1     &kp F2  &kp F3  &kp F4   &kp F5   &kp F6   &kp LEFT     &kp DOWN   &kp UP     &kp RIGHT  &trans    &trans
+&kp F7     &kp F8  &kp F9  &kp F10  &kp F11  &kp F12  &kp KP_PLUS  &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH
 &trans     &trans  &trans  &trans   &trans   &trans   &trans       &trans     &trans     &trans
             >;
         };
