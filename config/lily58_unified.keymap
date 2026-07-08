@@ -7,12 +7,149 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    macros {
+        /* Lowercase accented vowels and special chars via Linux Ctrl+Shift+U sequence */
+        m_a_acute: m_a_acute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp U>,
+                       <&macro_release &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp E &kp N1>,
+                       <&macro_tap &kp RET>;
+        };
+        m_e_acute: m_e_acute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp U>,
+                       <&macro_release &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp E &kp N9>,
+                       <&macro_tap &kp RET>;
+        };
+        m_i_acute: m_i_acute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp U>,
+                       <&macro_release &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp E &kp D>,
+                       <&macro_tap &kp RET>;
+        };
+        m_o_acute: m_o_acute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp U>,
+                       <&macro_release &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp F &kp N3>,
+                       <&macro_tap &kp RET>;
+        };
+        m_u_acute: m_u_acute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp U>,
+                       <&macro_release &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp F &kp A>,
+                       <&macro_tap &kp RET>;
+        };
+        m_enie: m_enie {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp U>,
+                       <&macro_release &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp F &kp N1>,
+                       <&macro_tap &kp RET>;
+        };
+        m_inv_question: m_inv_question {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp U>,
+                       <&macro_release &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp B &kp F>,
+                       <&macro_tap &kp RET>;
+        };
+        m_inv_exclaim: m_inv_exclaim {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp U>,
+                       <&macro_release &kp LCTRL &kp LSHFT>,
+                       <&macro_tap &kp A &kp N1>,
+                       <&macro_tap &kp RET>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
 
         SoftOff {
             bindings = <&soft_off>;
             key-positions = <0 49 57>;
+        };
+
+        /* ' + vowel → accented vowel */
+        combo_a_acute {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <35 25>;
+            bindings = <&m_a_acute>;
+            layers = <0>;
+        };
+        combo_e_acute {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <35 15>;
+            bindings = <&m_e_acute>;
+            layers = <0>;
+        };
+        combo_i_acute {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <35 20>;
+            bindings = <&m_i_acute>;
+            layers = <0>;
+        };
+        combo_o_acute {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <35 21>;
+            bindings = <&m_o_acute>;
+            layers = <0>;
+        };
+        combo_u_acute {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <35 19>;
+            bindings = <&m_u_acute>;
+            layers = <0>;
+        };
+        /* - + N → ñ */
+        combo_enie {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <11 42>;
+            bindings = <&m_enie>;
+            layers = <0>;
+        };
+        /* - + / → ¿ */
+        combo_inv_question {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <11 46>;
+            bindings = <&m_inv_question>;
+            layers = <0>;
+        };
+        /* - + 1 → ¡ */
+        combo_inv_exclaim {
+            timeout-ms = <50>;
+            require-prior-idle-ms = <150>;
+            key-positions = <11 1>;
+            bindings = <&m_inv_exclaim>;
+            layers = <0>;
         };
     };
 
