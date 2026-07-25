@@ -1,0 +1,7 @@
+/*
+ * Disable the blue LED driver on nRFMicro 1.3.
+ * References the leds node by full path since it has no label.
+ */
+&{/leds} {
+    status = "disabled";
+};
